@@ -1,0 +1,52 @@
+<!-- 推荐电影 -->
+<loading hidden="{{!loading}}">  加载中...</loading>
+<view class="page-header">
+  <text class="page-header-text">"线路列表"</text>
+</view>
+
+<scroll-view scroll-y="true" class="page-body"
+            class="page_list" scroll-y="true" bindscrolltolower="loadMore"
+             bindscrolltoupper="refresh"
+             style="height: {{windowHeight}}px; width: {{windowWidth}}px;">
+
+    <view class="page__bd">
+        <view class="section section_gap swiper">
+            <swiper indicator-dots="true"  autoplay="true" interval="3000" duration="500">
+                <block wx:for-items="{{ads}}">
+                    <swiper-item>
+                        <image class="swiper-image" src="{{item.image}}"></image>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+   </view>
+
+   <view class="item">
+         <image class="poster" src="{{'../../images/featured.png'}}"></image>
+         <image class="poster" src="{{'../../images/profile.png'}}"></image>
+         <image class="poster" src="{{'../../images/search.png'}}"></image>
+         <image class="poster" src="{{'../../images/usbox.png'}}"></image>
+   </view>
+ 
+  <navigator url="../detail/detail"  wx:for="{{lines}}">
+    <view class="list-item">
+       <image class="img" src="{{item.cover_image_info.url}}">
+             <text class="float-price">¥{{item.price}}</text>
+       </image>
+       
+        <text class="title">{{item.name}}</text>
+
+        <view class="price-time">
+            <text class="time">¥{{item.price}}</text>
+            <view class="blank"/>
+            <text class="time">开始时间:{{(item.event[0].start_time)}}</text>
+        </view>
+     </view>
+</navigator>
+
+    <view class="tips">
+        <view wx:if="{{hasMore}}"><image src="../../images/loading.gif" mode="aspectFill"/><text>加载中...</text></view>
+        <!--<view wx:else><text>没有更多内容了</text></view>-->
+     </view>
+
+</scroll-view>

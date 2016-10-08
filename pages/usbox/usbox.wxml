@@ -1,0 +1,37 @@
+<!-- 北美电影票房 -->
+<loading hidden="{{!loading}}">
+  加载中...
+</loading>
+<view class="page-header">
+  <text class="page-header-text">{{title}}</text>
+</view>
+<scroll-view scroll-y="true" class="page-body">
+<block  wx:for="{{movies}}"wx:for-item="film">
+   <navigator class="item" url="{{film.path}}"> 
+      <text class="title">{{film.title}}</text>  
+  </navigator> 
+  </block>
+
+
+    <view class="load-more-wrap">
+        <block wx:if="{{hasMore}}">
+          <block wx:if="{{loadMoreLoading}}">
+            <view class="load-content">
+              <text class="weui-loading"/><text class="loading-text">玩命加载中</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="btn-load-more" bindtap="loadMore">
+              <text>点击加载更多</text>
+            </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class="load-content">
+            <text>没有更多内容了</text>
+          </view>
+        </block>
+      </view> 
+
+
+</scroll-view>

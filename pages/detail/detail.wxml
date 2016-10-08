@@ -1,0 +1,39 @@
+<!-- 推荐电影 -->
+<loading hidden="{{!loading}}">  加载中...</loading>
+<view class="page-header">
+  <text class="page-header-text">{{detail.name}}</text>
+</view>
+
+<scroll-view scroll-y="true" class="page-body">
+      <image class="header-image" src="{{detail.cover_image_url}}"></image>
+ 
+    <view class="list-item"> 
+        <view class=".detail-layout">
+            <text class="detail-item">¥{{detail.price}}</text> 
+            <text class="detail-item">目的地:{{(detail.destination_district)}}</text>
+            <view class="horizontal-layout">
+            <image class="small-icon" src="{{'../../images/featured.png'}}"/>
+            <text class="detail-item">App立减:{{detail.coupon.amount}}</text>
+            </view>
+            <view class="club-layout">
+                <image class="club-logo" src="{{detail.club.logo}}"></image>
+                <view class="club-info-layout">
+                     <text class="detail-item">俱乐部:{{detail.club.name}}</text>
+                     <text class="detail-item">俱乐部电话:{{detail.club.manager_phone}}</text>
+                     <text class="detail-item">服务时间:{{detail.club.service_time}}</text>
+               </view>
+            </view>
+            <text class="detail-item">领队:{{detail.leader.name}}</text>
+            <text class="detail-item">领队独白:{{detail.leader.description}}</text>
+            <text class="detail-item">领队电话:{{detail.leader.phone}}</text>
+            <view  wx:for="{{detail.event}}">
+                   <text class="detail-item">开始时间:{{item.start_time}}</text>
+                   <view wx:for="{{item.apply_num}}">
+                          <text class="detail-item">组别名称:{{item.name}}</text>
+                          <text class="detail-item">组别价格:{{item.price}}</text>
+                   </view> 
+             </view>
+         </view>
+       </view> 
+
+</scroll-view>
